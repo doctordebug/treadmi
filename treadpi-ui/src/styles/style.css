@@ -1,0 +1,43 @@
+:root {
+--background-color-main: rgb(50,50,50);
+--background-color-priamry-components: rgb(255,75,0);
+--font-color-main:rgb(240,240,240);
+--font-color-primary-components:rgb(240,240,240);
+}
+@font-face {
+    font-family: 'OpenSans';
+    src: local('OpenSans'), url(OpenSans-Italic-VariableFont_wdth,wght.ttf) format('truetype');
+  }
+
+#app,
+html,
+body{
+    font-family: 'OpenSans';
+    margin: 0px;
+    height: 100%;
+}
+.appLayout{
+    background-color: var(--background-color-main);
+    display: flex;
+    flex-direction: column;
+    color: var(--font-color-main);
+    height: 100%;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.center{
+    justify-content: center;
+}
+
+.btn{
+    font-size: 75px;
+    padding: 30px 70px;
+}
+.btn-primary{
+    background-color: var(--background-color-priamry-components);
+    color: var(--font-color-primary-components);
+}
