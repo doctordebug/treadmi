@@ -10,8 +10,6 @@ const StartStopComponent = () => {
         body: JSON.stringify({ })
     };
     fetch('http://127.0.0.1:5000/api/start', requestOptions)
-        .then(response => response.json())
-        .then(data => alert(JSON.stringify(data)));
     }
     const pause = ()=> {
         const requestOptions = {
@@ -20,8 +18,7 @@ const StartStopComponent = () => {
         body: JSON.stringify({ })
     };
     fetch('http://127.0.0.1:5000/api/pause', requestOptions)
-        .then(response => response.json())
-        .then(data => alert(JSON.stringify(data)));
+
     }
     const stop = ()=> {
         const requestOptions = {
@@ -30,8 +27,7 @@ const StartStopComponent = () => {
         body: JSON.stringify({ })
     };
     fetch('http://127.0.0.1:5000/api/stop', requestOptions)
-        .then(response => response.json())
-        .then(data => alert(JSON.stringify(data)));
+
     }
 
     return (
