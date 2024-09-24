@@ -6,7 +6,7 @@
 }
 @font-face {
     font-family: 'OpenSans';
-    src: local('OpenSans'), url(OpenSans-Italic-VariableFont_wdth,wght.ttf) format('truetype');
+    src: local('OpenSans'), url(OpenSans-VariableFont_wdth,wght.ttf) format('truetype');
   }
 
 #app,
@@ -40,4 +40,31 @@ body{
 .btn-primary{
     background-color: var(--background-color-priamry-components);
     color: var(--font-color-primary-components);
+}
+
+.btn-small{
+    padding: 20px 20px;
+    text-align: center;
+    font-size: 80px;
+    margin: 10px;
+    min-width: 100px;
+    min-height: 100px;
+}
+
+.statusComponent{
+    padding: 30px 70px
+}
+
+.statusComponent .description{
+    font-size: 75px;
+}
+
+
+.statusComponent .unit{
+    font-size: 50px;
+}
+
+
+.statusComponent .value{
+    font-size: 75px;
 }

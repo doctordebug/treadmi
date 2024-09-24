@@ -5,20 +5,26 @@ import CurrentSpeedComponent from './CurrentSpeedComponent';
 import CurrentTimeComponent from './CurrentTimeComponent';
 import CurrentDistanceComponent from './CurrentDistanceComponent';
 import Row from './UIElements.tsx/Row';
+import SetSpeedComponent from './SetSpeedComponent';
 
 interface ITreadmillStatus {
   treadmillStatus: Status
 }
 
-const StatusComponent = (props:ITreadmillStatus) => {
+const ControllComponent = (props:ITreadmillStatus) => {
 
     return (
       <Row justifyContent='center'>
-        <CurrentSpeedComponent speed={props.treadmillStatus?.speed}/>
-        <CurrentDistanceComponent distance={props.treadmillStatus?.meters}/>
-        <CurrentTimeComponent time={props.treadmillStatus?.time_in_millis}/>
+        <SetSpeedComponent speed={6}/>
+        <SetSpeedComponent speed={8}/>
+        <SetSpeedComponent speed={10}/>
+        <SetSpeedComponent speed={12}/>
+        <SetSpeedComponent speed={14}/>
+        <SetSpeedComponent speed={16}/>
+        <SetSpeedComponent speed={18}/>
+        <SetSpeedComponent speed={20}/>
       </Row>
     )
 }
 
-export default StatusComponent;
+export default ControllComponent;

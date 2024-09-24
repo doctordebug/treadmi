@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import StatusComponent from './StatusComponent';
 import StartStopComponent from './StartStopComponent';
 import { updateStatus } from '../helper/api';
+import ControllComponent from './ControllComponent';
 
 const AppLayout = () => {
 
@@ -14,6 +15,7 @@ const AppLayout = () => {
 
   return(      
   <div className="appLayout">
+    <ControllComponent treadmillStatus={data}/>
     <StatusComponent treadmillStatus={data}/>
     <StartStopComponent/>
   </div>

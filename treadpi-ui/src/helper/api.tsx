@@ -43,3 +43,13 @@ export const stop = ()=> {
 fetch('http://127.0.0.1:5000/api/stop', requestOptions)
 
 }
+
+export const setSpeed = (speed:number)=> {
+  const requestOptions = {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ speed: speed})
+};
+fetch('http://127.0.0.1:5000/api/speed', requestOptions)
+
+}

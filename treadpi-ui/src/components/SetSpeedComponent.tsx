@@ -5,20 +5,20 @@ import CurrentSpeedComponent from './CurrentSpeedComponent';
 import CurrentTimeComponent from './CurrentTimeComponent';
 import CurrentDistanceComponent from './CurrentDistanceComponent';
 import Row from './UIElements.tsx/Row';
+import { setSpeed } from '../helper/api';
+import Button from '../elements/Button';
 
-interface ITreadmillStatus {
-  treadmillStatus: Status
+interface ISetSpeedProps {
+  speed: number
 }
 
-const StatusComponent = (props:ITreadmillStatus) => {
+const SetSpeedComponent = (props:ISetSpeedProps) => {
 
     return (
       <Row justifyContent='center'>
-        <CurrentSpeedComponent speed={props.treadmillStatus?.speed}/>
-        <CurrentDistanceComponent distance={props.treadmillStatus?.meters}/>
-        <CurrentTimeComponent time={props.treadmillStatus?.time_in_millis}/>
+        <Button onClick={() => setSpeed(props.speed)} type='primary' variant='small'>{props.speed + ""}</Button>
       </Row>
     )
 }
 
-export default StatusComponent;
+export default SetSpeedComponent;

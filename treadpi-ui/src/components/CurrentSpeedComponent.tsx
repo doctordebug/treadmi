@@ -12,7 +12,7 @@ const CurrentSpeedComponent = (props:ITreadmillStatus) => {
     return (
         <ValueWithLabel 
         unit="KMH"
-        value={pretifyMeters(props.speed)}
+        value={Math.round(props.speed) +".0"}
         description="Speed"
         />
     )

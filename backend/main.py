@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import smbus
 import time
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from threading import Thread
 
@@ -18,7 +18,7 @@ bus = smbus.SMBus(I2C_CHANNEL)
 total_pulses = 0
 # 0V = stop / 5V = max speed
 current_kmh = 0
-max_kmh = 20
+max_kmh = 20.000000001
 volts_per_kmh = 5.0 / max_kmh
 current_volts = 0
 
@@ -38,8 +38,10 @@ current_millis = 0
 
 #set speed (well... actually voltage, nvm)
 def set_voltage(voltage):
-    if voltage < 0 or voltage > 5:
-        raise ValueError('Voltage must be between 0 and 5 V')
+    if voltage < 0: 
+        voltage = 0
+    if voltage > 5:
+        voltage = 5
     # Konvertieren Sie den Spannungswert von 0-5V in einen 16-Bit-Wert (0-65536)
     value = int((voltage / 5.0) * 65536)
     # Aufteilen des Wertes in High- und Low-Bytes
@@ -71,11 +73,12 @@ def set_speed(kmh_dest):
     print(f"increaseByStep: {increaseByStep}")
     for s in range (0,steps):
         start_volts += increaseByStep
-        new_voltage = start_volts
+        new_voltage = max(0,start_volts)
+
         set_voltage(new_voltage)
         print(f"set voltage to {new_voltage}V - step: {s} of {steps}")
         time.sleep(seconds_per_kmh_change)
-        current_kmh = start_volts / volts_per_kmh
+        current_kmh = max(0, start_volts / volts_per_kmh)
         current_volts = start_volts
         if(current_kmh <= 0):
             current_state = paused
@@ -120,8 +123,13 @@ def stop():
 
 @app.route('/api/status', methods=['GET'])
 def status():
-    return jsonify(speed=current_kmh, volts = current_volts, meters = current_distance, time_in_millis = current_millis)
+    return jsonify(speed=current_kmh, volts = current_volts, meters = current_distance, time_in_millis = current_millis, status=current_state)
 
+@app.route('/api/speed', methods=['POST'])
+def updateSpeed():
+    data = request.get_json(force=True)
+    set_speed(data['speed'])
+    return jsonify(speed=current_kmh, volts = current_volts)
 
 
 
