@@ -1,5 +1,8 @@
 import { Status } from "./interfaces";
 
+const domain = `http://${window.location.hostname}`; 
+let port = 5000;
+
 function api<T>(url: string): Promise<T> {
   return fetch(url)
     .then(response => {
@@ -11,8 +14,9 @@ function api<T>(url: string): Promise<T> {
 }
 
 
+
 export const updateStatus  = () => {
-    const res = api<Status>("http://127.0.0.1:5000/api/status")
+    const res = api<Status>(`${domain}:${port}/api/status`)
     return res;
   };
 
@@ -23,7 +27,7 @@ export  const start = ()=> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ })
 };
-fetch('http://127.0.0.1:5000/api/start', requestOptions)
+fetch(`${domain}:${port}/api/start`, requestOptions)
 }
 export const pause = ()=> {
     const requestOptions = {
@@ -31,7 +35,7 @@ export const pause = ()=> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ })
 };
-fetch('http://127.0.0.1:5000/api/pause', requestOptions)
+fetch(`${domain}:${port}/api/pause`, requestOptions)
 
 }
 export const stop = ()=> {
@@ -40,7 +44,7 @@ export const stop = ()=> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ })
 };
-fetch('http://127.0.0.1:5000/api/stop', requestOptions)
+fetch(`${domain}:${port}/api/stop`, requestOptions)
 
 }
 
@@ -50,6 +54,6 @@ export const setSpeed = (speed:number)=> {
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ speed: speed})
 };
-fetch('http://127.0.0.1:5000/api/speed', requestOptions)
+fetch(`${domain}:${port}/api/speed`, requestOptions)
 
 }
